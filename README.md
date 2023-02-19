@@ -35,9 +35,6 @@
 
 
 ## About The Project
-
-![Screen Shot](images/screenshot.png)
-
 In graduate studies, many students find it difficult to achieve good grades because they do not get much support in higher education courses compared to the support that students receive in schools. We can use machine learning for the student grades prediction task so that instructors can help students prepare for topics where student grades were predicted low.in this project, Face attendance system, Quiz, whiteboard , chatbot , timetable, books, notes etc.
 
 
@@ -168,3 +165,6 @@ Distributed under the MIT License. See [LICENSE](https://github.com/sohammanjrek
 ## Authors
 
 * **Soham Manjrekar** - *Comps Student* - [Soham Manjrekar](https://github.com/Sohammanjrekar/) - **
+* **Danish Jamadar** - *Comps Student* - [Danish Jamadar](https://github.com/Danishjamadar/) - **
+* **Muzzaffar Khan** - *Comps Student* - [Muzzaffar Khan](https://github.com/muzaffar-khan) - **
+* **Srushti Sawant** - *Comps Student* - [Srushti Sawant](https://github.com/) - **
