@@ -9,39 +9,7 @@ from datetime import datetime
 
 
 class Meta:
-
-    app_label = 'GRsystem'
-
-
-class Profile(models.Model):
-    typeuser = (('student', 'student'), ('grievance', 'grievance'))
-    # change college names
-    COL = (('College1', 'College1'), ('College2', 'College2'))
-    user = models.OneToOneField(
-        User, on_delete=models.CASCADE, primary_key=True)
-    collegename = models.CharField(max_length=29, choices=COL, blank=False)
-    phone_regex = RegexValidator(
-        regex=r'^\d{10,10}$', message="Phone number must be entered in the format:Up to 10 digits allowed.")
-    contactnumber = models.CharField(
-        validators=[phone_regex], max_length=10, blank=True)
-    type_user = models.CharField(
-        max_length=20, default='student', choices=typeuser)
-    CB = (('ComputerScience', "ComputerScience"), ('InformationScience', "InformationScience"),
-          ('Electronics and Communication', "Electronics and Communication"), ('Mechanical', "Mechanical"))
-    Branch = models.CharField(
-        choices=CB, max_length=29, default='ComputerScience')
-
-    def __str__(self):
-        return self.collegename
-
-    def __str__(self):
-        return self.user.username
-
-
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
+    app_label = 'Complaint'
 
 
 class Complaint(models.Model):
@@ -51,9 +19,7 @@ class Complaint(models.Model):
 
     Subject = models.CharField(max_length=200, blank=False, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
-
-    Type_of_complaint = models.CharField(
-        choices=TYPE, null=True, max_length=200)
+    Type_of_complaint = models.CharField(choices=TYPE, null=True, max_length=200)
     Description = models.TextField(max_length=4000, blank=False, null=True)
     Time = models.DateField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=3)
@@ -75,7 +41,9 @@ class Complaint(models.Model):
 
 
 class Grievance(models.Model):
-    guser = models.OneToOneField(User, on_delete=models.CASCADE, default=None)
-
+    Subject = models.CharField(max_length=200, blank=False, null=True)
+    guser = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    Description = models.TextField(max_length=4000, blank=False, null=True)
+    Time = models.DateField(auto_now=True)
     def __str__(self):
-        return self.guser
+        return self.Subject
