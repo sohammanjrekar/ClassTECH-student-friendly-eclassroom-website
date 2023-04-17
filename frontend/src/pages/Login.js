@@ -3,33 +3,32 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 const baseurl = 'http://127.0.0.1:8000/core/teacherlogin/'
 function Login() {
-  const [data, setdata] = useState({
+  useEffect(() => {
+    document.title = 'Teacher Login'
+  })
+
+  const [teacherdata, setteacherdata] = useState({
     email: '',
     password: '',
-    status: '',
   })
 
   const handlechange = (event) => {
-    setdata({
-      ...data,
+    setteacherdata({
+      ...teacherdata,
       [event.target.name]: event.target.value,
     })
   }
   const submitform = () => {
     const formdata = new FormData()
-    formdata.append('email', data.email)
-    formdata.append('password', data.password)
+    formdata.append('email', teacherdata.email)
+    formdata.append('password', teacherdata.password)
     axios
-      .post(baseurl, data)
+      .post(baseurl, teacherdata)
       .then((res) => {
-        setdata({
-          status: 'true',
-        })
         console.log(res.data)
       })
       .catch((err) => {
         console.log(err)
-        setdata({ status: 'false' })
       })
   }
 
@@ -41,7 +40,7 @@ function Login() {
           <input
             className="w-full border rounded h-12 px-4 focus:outline-none"
             placeholder="Email adress "
-            value={data.email}
+            value={teacherdata.email}
             onChange={handlechange}
             name="email"
             type="email"
@@ -52,7 +51,7 @@ function Login() {
               className="w-full border rounded h-12 px-4 focus:outline-none -mr-7"
               placeholder="Password"
               type="password"
-              value={data.password}
+              value={teacherdata.password}
               onChange={handlechange}
               name="password"
             />

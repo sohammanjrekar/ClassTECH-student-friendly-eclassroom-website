@@ -21,7 +21,7 @@ class CourseSerializer(serializers.ModelSerializer):
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Student
-        fields = ['full_name','email','password','qualification','mobileno']
+        fields = ['full_name','email','password','mobileno']
         
         
 class ContactusSerializer(serializers.ModelSerializer):

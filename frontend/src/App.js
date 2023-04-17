@@ -21,6 +21,9 @@ import AddNote from './classroom/pages/AddNote'
 import Addhomework from './classroom/pages/Addhomework'
 import AddTodo from './classroom/pages/AddTodo'
 import Classroom from './classroom/pages/Classroom'
+import StudentLogin from './pages/StudentLogin'
+import StudentProfile from './pages/StudentProfile'
+import TeacherDetail from './pages/TeacherDetail'
 function App() {
   return (
     <div className="App">
@@ -48,6 +51,10 @@ function App() {
         </Route>
         <Route path="*" element={<Errorpage />} />
         <Route path="whiteboard" element={<Home1 />} />
+        <Route path="studentlogin" element={<StudentLogin />} />
+        <Route path="studentregister" element={<StudentProfile />} />
+        <Route path="teacherdetail/:teacher_id" element={<TeacherDetail />} />
+        <Route path="studentregister" element={<StudentProfile />} />
       </Routes>
       <Outlet />
     </div>

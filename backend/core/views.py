@@ -12,8 +12,6 @@ from django.utils.datastructures import MultiValueDictKeyError
 from . import models
 
 
-
-
 # TeacherDetail
 class TeacherList(generics.ListCreateAPIView):
     queryset = models.Teacher.objects.all()
@@ -24,23 +22,6 @@ class TeacherDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TeacherSerializer
     # permission_classes=[permissions.IsAuthenticated]
     
-@csrf_exempt
-def teacher_login(request):
-    email=request.POST['email']
-    password=request.POST['password']
-    try:
-        is_private = request.POST['is_private']
-    except MultiValueDictKeyError:
-        is_private = False
-    teacherData=models.Teacher.objects.get(email=email,password=password,is_private=is_private)
-    if teacherData:
-        return JsonResponse({'bool':True})
-    else :
-        return JsonResponse({'bool':False})
-
-
-
-
 
 
 # StudentDetail
@@ -54,9 +35,6 @@ class StudentDetail(generics.RetrieveUpdateDestroyAPIView):
     # permission_classes=[permissions.IsAuthenticated]
     
 
-
-
-
 # Contactus
 class ContactusList(generics.ListCreateAPIView):
     queryset = models.Contactus.objects.all()
@@ -67,3 +45,19 @@ class ContactusDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ContactusSerializer
     # permission_classes=[permissions.IsAuthenticated]
 
+
+
+@csrf_exempt
+def teacher_login(request):
+    email = request.POST.get('email')
+    password = request.POST.get('password')
+    print(email,password)
+    try:
+        TeacherData=models.Teacher.objects.filter(email=email,password=password).first()
+        if TeacherData:
+            return JsonResponse({'bool':True})
+        else:
+            return JsonResponse({'bool':False})
+    except models.Teacher.DoesNotExist:
+        return JsonResponse({'bool':False})
+    

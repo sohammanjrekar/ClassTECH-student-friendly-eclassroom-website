@@ -6,6 +6,7 @@ types = [('None', 'None'), ('cvr', 'cvr'), ('asr', 'asr'),
 H_types = [('None', 'None'), ('AC', 'AC'), ('Non AC', 'Non AC')]
 
 
+
 class Profile(models.Model):
     first_name = models.CharField(max_length=70)
     last_name = models.CharField(max_length=70)

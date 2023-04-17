@@ -27,7 +27,7 @@ from django.http import FileResponse
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
-
+from rest_framework.parsers import MultiPartParser, FormParser
 
 last_face = 0
 current_path = os.path.dirname(__file__)
