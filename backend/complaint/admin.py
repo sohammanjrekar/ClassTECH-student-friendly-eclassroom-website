@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile, Complaint, Grievance
+from .models import Complaint, Grievance
 
 
 class CAdmin(admin.ModelAdmin):
@@ -7,6 +7,6 @@ class CAdmin(admin.ModelAdmin):
                     'Description', 'Time', 'status')
 
 
-admin.site.register(Profile)
+
 admin.site.register(Complaint, CAdmin)
 admin.site.register(Grievance)

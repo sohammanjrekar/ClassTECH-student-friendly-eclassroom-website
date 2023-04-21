@@ -11,25 +11,49 @@ from reportlab.pdfgen import canvas
 import reportlab
 
 from django.db.models import Count, Q
-from .models import Profile, Complaint
 
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse
-from complaint.forms import ProfileUpdateForm, ComplaintForm, UserProfileUpdateform, statusupdate
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.core.mail import send_mail
 from datetime import datetime
-# page loading.
+from django.http import Http404
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework import permissions
+from .serializers import ComplaintSerializer,GrievanceSerializer
+from rest_framework import generics
+from . import models
 
 
-def index(request):
-    return render(request, "GRsystem/home.html")
 
-# get the count of all the submitted complaints,solved,unsolved.
 
+# ComplaintDetail
+class ComplaintList(generics.ListCreateAPIView):
+    queryset = models.Complaint.objects.all()
+    serializer_class = ComplaintSerializer
+    # permission_classes=[permissions.IsAuthenticated]
+class ComplaintDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = models.Complaint.objects.all()
+    serializer_class = ComplaintSerializer
+    # permission_classes=[permissions.IsAuthenticated]
+    
+
+
+
+# GrievanceDetail
+class GrievanceList(generics.ListCreateAPIView):
+    queryset = models.Grievance.objects.all()
+    serializer_class = GrievanceSerializer
+    # permission_classes=[permissions.IsAuthenticated]
+class GrievanceDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = models.Grievance.objects.all()
+    serializer_class = GrievanceSerializer
+    # permission_classes=[permissions.IsAuthenticated]
 
 def counter(request):
     total = Complaint.objects.all().count()
