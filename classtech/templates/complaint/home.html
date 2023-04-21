@@ -1,0 +1,46 @@
+{% extends "core/base.html" %}
+{% block title %}<title>Complaint</title>
+<style>
+img{
+  width:50%;
+margin:auto;}
+
+</style>{% endblock %}
+{% block content %}
+<center>
+{% load static %}
+  <br>
+<div class="row  d-flex justify-content-center">
+<div class="col-sm-3 col-sm-pull-4">
+<div class="card bg-primary text-white" style="width: 18rem;">
+  <img src="{% static 'complaint/img/form.png' %}" class="img-rounded my-2" alt="Cinque Terre">
+  <div class="card-body">
+    <p class="card-text">Get the Complaints.</p>
+  </div>
+</div>
+</div>
+<div class="col-sm-3 col-sm-pull-4">
+<div class="card bg-primary text-white" style="width: 18rem;">
+  <img src="{% static 'complaint/img/solved.png' %}" class="img-rounded my-2" alt="Cinque Terre">
+  <div class="card-body">
+    <p class="card-text">Solve the Complaints.</p>
+  </div>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="card bg-primary text-white" style="width: 18rem;">
+   <img src="{% static 'complaint/img/bars.png' %}" class="img-rounded my-2" alt="Cinque Terre">
+  <div class="card-body">
+    <p class="card-text">Get the Stats of the Complaints.</p>
+  </div>
+</div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+</center>
+  {% endblock %}
