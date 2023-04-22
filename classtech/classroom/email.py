@@ -37,6 +37,6 @@ def submission_done_mail(assignment_id,user,submitted_file):
     user_email = user.email 
     assignment = Assignments.objects.get(pk=assignment_id)
     assignment_name = assignment.assignment_name 
-    message = 'Dear Student {}, you have made a submission {} for the assignment {} on {} .'.format(user.username,submitted_file.name,assignment_name,datetime.now())
+    message = 'Dear Student {}, you have made a submission {} for the assignment {} on {} .'.format(user.username,submitted_file.name,assignment_name,datetime.datetime.now())
     subject = 'File submitted for assignment {}'.format(assignment_name)
     send_email(subject,user_email,message)

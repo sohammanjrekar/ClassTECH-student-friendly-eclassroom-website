@@ -34,8 +34,6 @@ def counter(request):
 def complaints(request):
   
     if request.method == 'POST':
-           
-        
         complaint_form=ComplaintForm(request.POST)
         if complaint_form.is_valid():
                instance=complaint_form.save(commit=False)
@@ -179,7 +177,7 @@ def pdf_viewer(request):
             detailtime=("Time of Issue/ Time of Solved: {}".format(val['Time']))
     #detail_string = u", ".join(("Desc={}".format(val['Description'])) for val in details) 
     date_format = "%Y-%m-%d"
-    a = datetime.strptime(str(datetime.now().date()), date_format)
+    a = datetime.strptime(str(datetime.datetime.now().date()), date_format)
     b = datetime.strptime(str(ptime), date_format)
     delta = a - b
     print(b)

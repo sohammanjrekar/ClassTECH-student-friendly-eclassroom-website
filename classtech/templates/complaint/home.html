@@ -11,30 +11,39 @@ margin:auto;}
 {% load static %}
   <br>
 <div class="row  d-flex justify-content-center">
+
 <div class="col-sm-3 col-sm-pull-4">
+  <a href="{% url 'allcomplaints' %}">
 <div class="card bg-primary text-white" style="width: 18rem;">
   <img src="{% static 'complaint/img/form.png' %}" class="img-rounded my-2" alt="Cinque Terre">
   <div class="card-body">
     <p class="card-text">Get the Complaints.</p>
   </div>
+</div></a>
 </div>
-</div>
+
 <div class="col-sm-3 col-sm-pull-4">
+  <a href="{% url 'solved' %}">
 <div class="card bg-primary text-white" style="width: 18rem;">
   <img src="{% static 'complaint/img/solved.png' %}" class="img-rounded my-2" alt="Cinque Terre">
   <div class="card-body">
     <p class="card-text">Solve the Complaints.</p>
   </div>
 </div>
+</a>
 </div>
+
 <div class="col-sm-3">
+  <a href="{% url 'counter' %}">
 <div class="card bg-primary text-white" style="width: 18rem;">
    <img src="{% static 'complaint/img/bars.png' %}" class="img-rounded my-2" alt="Cinque Terre">
   <div class="card-body">
     <p class="card-text">Get the Stats of the Complaints.</p>
   </div>
 </div>
+</a>
 </div>
+
 </div>
 <br>
 <br>

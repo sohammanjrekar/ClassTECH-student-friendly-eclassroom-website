@@ -12,17 +12,17 @@ class Classrooms(models.Model):
         return self.classroom_name
 
 class Students(models.Model):
-    student_id=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    student_id=models.ForeignKey(User,on_delete=models.CASCADE)
     classroom_id=models.ForeignKey(Classrooms,on_delete=models.CASCADE)
 
 class Teachers(models.Model):
-    teacher_id=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    teacher_id=models.ForeignKey(User,on_delete=models.CASCADE)
     classroom_id=models.ForeignKey(Classrooms,on_delete=models.CASCADE)
 
 class Assignments(models.Model):
     assignment_name=models.CharField(max_length=50)
     classroom_id=models.ForeignKey(Classrooms,on_delete=models.CASCADE)
-    due_date=models.DateField()
+    due_date=models.DateField(default=datetime.datetime.now())
     due_time=models.TimeField(default=datetime.time(10,10))
     posted_date=models.DateField(auto_now_add=True)
     instructions=models.TextField()

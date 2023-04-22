@@ -18,7 +18,7 @@ class Complaint(models.Model):
 
     def save(self, *args, **kwargs):
         if self.status and not self.__status:
-            self.active_from = datetime.now()
+            self.active_from = datetime.datetime.now()
         super(Complaint, self).save(*args, **kwargs)
     
     def __str__(self):

@@ -72,7 +72,7 @@ def scan(request):
     flag = 0
     known_face_encodings = []
     known_face_names = []
-    date = datetime.now().strftime("%Y-%m-%d")
+    date = datetime.datetime.now().strftime("%Y-%m-%d")
     profiles = Profile.objects.all()
     data = {}
     attendance = {}
@@ -581,7 +581,7 @@ def manual_checking(request):
 @login_required
 def manual_attendance(request):
     # print(2)
-    date = datetime.now().strftime("%Y-%m-%d")
+    date = datetime.datetime.now().strftime("%Y-%m-%d")
     attendance = {}
     if os.path.getsize("media/picklefiles/attendance.pickle") > 0:
         attendance = pickle.loads(

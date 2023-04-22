@@ -1,11 +1,16 @@
-
+from cv2 import imshow
+from django.contrib import messages
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render,redirect
+import os
+from os import stat
 import cv2 as cv
+from cv2 import VideoCapture
 from attendence.simple_Face_Rec import SimpleFacerec
 from datetime import datetime, date
 import pandas as pd
-
-
+from attendence.models import newStudent
+import datetime
 # Create your views here.
 
 # Function to render the request to home page
@@ -16,13 +21,9 @@ def index(request):
 def attendance_recognition(request):
 
     Simp_F_R = SimpleFacerec()
-
     path = 'media'
-
     # Take Function to load the images from Simple_Face_Rec File
     Simp_F_R.load_encoding_images(path)
-
-
     # Function to mark the attendance
     def MarkAttendance(name):
         with open('attendence/Attendance.csv','r+') as f:
@@ -32,7 +33,7 @@ def attendance_recognition(request):
                 entry = l.split(',')
                 List_Name.append(entry[0])
             if name not in List_Name:
-                status = datetime.now()
+                status = datetime.datetime.now()
                 dateStatus = date.today()
                 dtstr = status.strftime('%H:%M:%S')
                 datestr = dateStatus.strftime("%d/%m/%Y")
@@ -73,5 +74,11 @@ def view_attendance(request):
     read_file = pd.read_csv("attendence/Attendance.csv")
 
     # Convert into HTMl
-    read_file.to_html('templates/' + "view_attendance.html")
-    return render(request,'attendence/view_attendance.html')
+    data_html=read_file.to_html()
+    context = {'loaded_data': data_html}
+    return render(request, "attendence/view_attendance.html", context)
+
+def addstudent(request):
+    title = request.POST['title']
+    newStudent = newStudent(subject_id=1, name='Physics', max_marks=100)
+    newStudent.save()

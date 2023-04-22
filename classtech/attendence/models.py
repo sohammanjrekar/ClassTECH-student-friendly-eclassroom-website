@@ -13,6 +13,7 @@ class Course(models.Model):
         (7, 'Seventh'),
         (8, 'Eighth'),
     )
+    
     course_id = models.CharField(max_length=7, primary_key=True)
     course_name = models.CharField(max_length=50, null=False, default='')
     dep = models.ForeignKey('Department', on_delete=models.CASCADE)
@@ -36,7 +37,8 @@ class Department(models.Model):
         ('ME', 'Mechanical Engineering'),
         ('BS', 'Basic Science'),
     )
-    depname = models.CharField(max_length=3, choices=dep_choice, primary_key=True)
+    department_id= models.CharField(max_length=7, primary_key=True)
+    depname = models.CharField(max_length=3, choices=dep_choice)
     dep_email = models.CharField(max_length=50, null=False, default='')
     dep_contact = models.CharField(max_length=10, null=False, default='')
     def __str__(self):
@@ -67,7 +69,7 @@ class newStudent(models.Model):
     first_name = models.CharField(max_length=70)
     last_name = models.CharField(max_length=70)
     uin = models.CharField(max_length=10)
-    birth_date = models.DateField()
+    birth_date = models.DateField(auto_now_add=True)
     phone = models.CharField(max_length=12, null=False, default='')
     parentphone = models.CharField(max_length=12, null=False, default='')
     email = models.EmailField()

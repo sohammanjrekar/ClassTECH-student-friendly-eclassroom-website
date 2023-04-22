@@ -26,7 +26,7 @@ def submit_assignment_request(request,assignment_id):
     except Exception as e:  
         print(str(e))  
         submission = Submissions(assignment_id = assignment,student_id= student_id,submission_file = file_name)
-        dt1=datetime.now()
+        dt1=datetime.datetime.now()
         dt2=datetime.combine(assignment.due_date,assignment.due_time)
         time = timesince(dt1, dt2)
         if time[0]=='0':
