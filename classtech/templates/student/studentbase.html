@@ -4,7 +4,7 @@
 
 <head>
   <meta charset="utf-8">
- 
+
 
   <style media="screen">
     a:link {
@@ -14,7 +14,8 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: "Gill Sans", sans-serif;;
+      font-family: "Gill Sans", sans-serif;
+      ;
     }
 
     header {
@@ -78,7 +79,7 @@
     .sidebar h4 {
       color: #ccc;
       margin-top: 0;
-      
+
     }
 
     .sidebar a {
@@ -161,7 +162,7 @@
   <!--header area start-->
   <header>
     <label for="check">
-      <i style="left: 200px;margin-top: 17px;"class="fas fa-bars" id="sidebar_btn"></i>
+      <i style="left: 200px;margin-top: 17px;" class="fas fa-bars" id="sidebar_btn"></i>
     </label>
     <div class="left_area">
       <h3>Online Quiz</h3>
@@ -175,7 +176,7 @@
   <div class="sidebar">
     <center>
 
-      <img src="{% static "image/student.png" %}" class="profile_image" alt="">
+      <img src="{% static " image/student.png" %}" class="profile_image" alt="">
       <h4>{{request.user.first_name}}</h4>
       <h6 style="color: rgb(255, 255, 255);">( Student )</h6>
 
@@ -197,7 +198,7 @@
 
 
     <br><br><br>
-    {% include "quiz/footer.html" %}
+
   </div>
   <!--content end-->
 </body>

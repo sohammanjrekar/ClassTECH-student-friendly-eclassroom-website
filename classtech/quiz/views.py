@@ -39,14 +39,14 @@ def afterlogin_view(request):
         else:
             return render(request,'teacher/teacher_wait_for_approval.html')
     else:
-        return redirect('admin-dashboard')
+        return redirect('quiz/admin-dashboard')
 
 
 
 def adminclick_view(request):
     if request.user.is_authenticated:
-        return HttpResponseRedirect('afterlogin')
-    return HttpResponseRedirect('adminlogin')
+        return HttpResponseRedirect('quiz/afterlogin')
+    return HttpResponseRedirect('quiz/adminlogin')
 
 
 @login_required(login_url='adminlogin')
@@ -100,7 +100,7 @@ def delete_teacher_view(request,pk):
     user=User.objects.get(id=teacher.user_id)
     user.delete()
     teacher.delete()
-    return HttpResponseRedirect('/admin-view-teacher')
+    return HttpResponseRedirect('quiz/admin-view-teacher')
 
 
 
@@ -123,7 +123,7 @@ def approve_teacher_view(request,pk):
             teacher.save()
         else:
             print("form is invalid")
-        return HttpResponseRedirect('/admin-view-pending-teacher')
+        return HttpResponseRedirect('quiz/admin-view-pending-teacher')
     return render(request,'quiz/salary_form.html',{'teacherSalary':teacherSalary})
 
 @login_required(login_url='adminlogin')
@@ -132,7 +132,7 @@ def reject_teacher_view(request,pk):
     user=User.objects.get(id=teacher.user_id)
     user.delete()
     teacher.delete()
-    return HttpResponseRedirect('/admin-view-pending-teacher')
+    return HttpResponseRedirect('quiz/admin-view-pending-teacher')
 
 @login_required(login_url='adminlogin')
 def admin_view_teacher_salary_view(request):
@@ -182,7 +182,7 @@ def delete_student_view(request,pk):
     user=User.objects.get(id=student.user_id)
     user.delete()
     student.delete()
-    return HttpResponseRedirect('/admin-view-student')
+    return HttpResponseRedirect('quiz/admin-view-student')
 
 
 @login_required(login_url='adminlogin')
@@ -199,7 +199,7 @@ def admin_add_course_view(request):
             courseForm.save()
         else:
             print("form is invalid")
-        return HttpResponseRedirect('/admin-view-course')
+        return HttpResponseRedirect('admin-view-course')
     return render(request,'quiz/admin_add_course.html',{'courseForm':courseForm})
 
 
@@ -212,7 +212,7 @@ def admin_view_course_view(request):
 def delete_course_view(request,pk):
     course=models.Course.objects.get(id=pk)
     course.delete()
-    return HttpResponseRedirect('/admin-view-course')
+    return HttpResponseRedirect('quiz/admin-view-course')
 
 
 
@@ -233,7 +233,7 @@ def admin_add_question_view(request):
             question.save()       
         else:
             print("form is invalid")
-        return HttpResponseRedirect('/admin-view-question')
+        return HttpResponseRedirect('admin-view-question')
     return render(request,'quiz/admin_add_question.html',{'questionForm':questionForm})
 
 
@@ -251,7 +251,7 @@ def view_question_view(request,pk):
 def delete_question_view(request,pk):
     question=models.Question.objects.get(id=pk)
     question.delete()
-    return HttpResponseRedirect('/admin-view-question')
+    return HttpResponseRedirect('quiz/admin-view-question')
 
 @login_required(login_url='adminlogin')
 def admin_view_student_marks_view(request):
@@ -275,11 +275,6 @@ def admin_check_marks_view(request,pk):
     return render(request,'quiz/admin_check_marks.html',{'results':results})
     
 
-
-
-
-def aboutus_view(request):
-    return render(request,'quiz/aboutus.html')
 
 def contactus_view(request):
     sub = forms.ContactusForm()

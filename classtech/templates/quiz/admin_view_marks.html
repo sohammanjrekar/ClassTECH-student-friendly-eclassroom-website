@@ -32,7 +32,7 @@
         <tr>
 
           <th>Exam Name</th>
-          
+
           <th>View Marks</th>
         </tr>
       </thead>
@@ -40,9 +40,10 @@
       <tr>
 
         <td> {{t.course_name}}</td>
-        
-        
-        <td><a class="btn btn-danger btn-xs" href="{% url 'admin-check-marks' t.id  %}"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+
+
+        <td><a class="btn btn-danger btn-xs" href="{% url 'admin-check-marks' t.id  %}"><span
+              class="glyphicon glyphicon-eye-open"></span></a></td>
       </tr>
       {% endfor %}
     </table>

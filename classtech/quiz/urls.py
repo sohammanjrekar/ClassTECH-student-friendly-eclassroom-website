@@ -5,7 +5,7 @@ from django.contrib.auth.views import LogoutView,LoginView
 urlpatterns = [
     path('teacher/',include('teacher.urls')),
     path('student/',include('student.urls')),
-    path('',views.home_view,name=''),
+    path('',views.home_view,name='home'),
     path('afterlogin', views.afterlogin_view,name='afterlogin'),
     path('adminclick', views.adminclick_view),
     path('adminlogin', LoginView.as_view(template_name='quiz/adminlogin.html'),name='adminlogin'),

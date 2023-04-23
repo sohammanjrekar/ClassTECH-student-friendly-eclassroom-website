@@ -5,7 +5,8 @@ from classroom.decorators import teacher_required ,student_required,access_class
 from classroom.models import Teachers, Students, Assignments, Submissions
 from classroom.forms import *     
 from classroom import email
-
+from django.http import JsonResponse
+from classroom.utils import generate_class_code
 from itertools import chain
 @login_required(login_url='login')
 @student_required('home')

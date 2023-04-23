@@ -1,25 +1,19 @@
-from cv2 import imshow
-from django.contrib import messages
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render,redirect
-import os
-from os import stat
+from django.shortcuts import render
 import cv2 as cv
-from cv2 import VideoCapture
 from attendence.simple_Face_Rec import SimpleFacerec
 from datetime import datetime, date
 import pandas as pd
-from attendence.models import newStudent
 import datetime
-# Create your views here.
+from bluetooth import *
+uin_blutooth = []
 
+# Create your views here.
 # Function to render the request to home page
 def index(request):
     return render(request, 'attendence/student_dashbord.html')
 
 # Function to recognize the face and mark the attendance if face recognizes
 def attendance_recognition(request):
-
     Simp_F_R = SimpleFacerec()
     path = 'media'
     # Take Function to load the images from Simple_Face_Rec File
@@ -37,8 +31,17 @@ def attendance_recognition(request):
                 dateStatus = date.today()
                 dtstr = status.strftime('%H:%M:%S')
                 datestr = dateStatus.strftime("%d/%m/%Y")
-                f.writelines(f'\n{name},{dtstr},{datestr}')
-                
+                nearby_devices = discover_devices(lookup_names = True)
+                for fname,addr in nearby_devices:
+                    uin_blutooth.append(addr)
+                print(uin_blutooth)
+                if name in uin_blutooth:
+                    f.writelines(f'\n{name},{dtstr},{datestr}')
+                    print("present")
+                else:
+                    print("not present")
+    uin_blutooth.clear()
+                    
 
     # Start to take the video Picture
     cap = cv.VideoCapture(0)

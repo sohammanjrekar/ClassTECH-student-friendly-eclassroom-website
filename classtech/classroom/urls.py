@@ -6,11 +6,10 @@ from django.conf import settings
 from classroom.views import home,auth,classs,assignments,submissions
 
 urlpatterns = [
-    path('',home.landing_page,name='landing_page'),
     path('login/',auth.login_view,name='login'),
     path('register/',auth.register_view,name='register'),
     path('logout/', auth.logout_view,name='logout'),
-    path('home/',home.home,name='home'),
+    path('',home.home,name='home'),
     path('class/<int:id>',classs.render_class,name='render_class'),
     path('create_assignment/<int:classroom_id>',assignments.create_assignment,name='create_assignment'),
     path('assignment_summary/<int:assignment_id>',assignments.assignment_summary,name='assignment_summary'),

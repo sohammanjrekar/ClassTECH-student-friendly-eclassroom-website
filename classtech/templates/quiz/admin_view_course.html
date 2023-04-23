@@ -43,8 +43,9 @@
         <td> {{t.course_name}}</td>
         <td>{{t.question_number}}</td>
         <td>{{t.total_marks}}</td>
-        
-        <td><a class="btn btn-danger btn-xs" href="{% url 'delete-course' t.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+
+        <td><a class="btn btn-danger btn-xs" href="{% url 'delete-course' t.id  %}"><span
+              class="glyphicon glyphicon-trash"></span></a></td>
       </tr>
       {% endfor %}
     </table>
