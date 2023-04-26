@@ -7,19 +7,20 @@
 {% endblock %}
 
 {% block content %}
-<nav class="navbar navbar-expand-lg navbar-light navbar_custom">
-  <b>Classroom</b></a>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+<nav class="navbar navbar-expand-lg navbar-light navbar_custom pl-5">
+  <b class="text-center">
+    <h2>Classroom</h2>
+  </b></a>
+  <ul class="navbar-nav mx-5">
+    <li class="nav-item active">
 
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link mybtn myinfo mybtn-active" href="{% url 'register' %}">Register<span
-            class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-  </div>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link mybtn myinfotext-text-gray-600  py-2 hover:cursor-pointer px-4 rounded text-white bg-gradient-to-tr from-indigo-600 to-green-600 hover:shadow-lg ml-5"
+        href="{% url 'register' %}">Register<span class="sr-only">(current)</span></a>
+    </li>
+  </ul>
+
 </nav>
 
 

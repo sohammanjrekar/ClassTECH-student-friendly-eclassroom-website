@@ -23,7 +23,7 @@ INSTALLED_APPS = [
     'complaint',
     'widget_tweaks',
     'crispy_forms',
-    'crispy_bootstrap4'
+    'crispy_bootstrap4',
     ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [

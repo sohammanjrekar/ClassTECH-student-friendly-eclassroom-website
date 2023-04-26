@@ -34,8 +34,6 @@ class UserRegisterationForm(UserCreationForm):
         self.fields['email'].label = ''
         self.fields['password1'].label = ''
         self.fields['password2'].label = ''
-        self.fields['profile_photo'].label = ''
-        self.fields['profile_photo'].widget.attrs['placeholder'] = 'Profile photo'
         self.fields['email'].widget.attrs['placeholder'] = 'Email'
         self.fields['username'].widget.attrs['placeholder'] = 'Username'
         self.fields['password1'].widget.attrs['placeholder'] = 'Password'
