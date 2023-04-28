@@ -11,7 +11,7 @@ uin_blutooth = []
 # Function to render the request to home page
 def index(request):
     return render(request, 'attendence/student_dashbord.html')
-
+student=False
 # Function to recognize the face and mark the attendance if face recognizes
 def attendance_recognition(request):
     Simp_F_R = SimpleFacerec()
@@ -38,8 +38,10 @@ def attendance_recognition(request):
                 if name in uin_blutooth:
                     f.writelines(f'\n{name},{dtstr},{datestr}')
                     print("present")
+                    student=True
                 else:
                     print("not present")
+                    student=False
     uin_blutooth.clear()
                     
 

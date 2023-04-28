@@ -9,7 +9,7 @@
     <li class="nav-item active mx-1 ">
       <button
         class="mybtn myinfo mybtn-active text-text-gray-600  py-1 hover:cursor-pointer px-4 rounded text-white bg-gradient-to-tr from-indigo-600 to-green-600 hover:shadow-lg"
-        type="button" data-toggle="modal" data-target="#add_class">Create
+        type="button" data-bs-toggle="modal" data-bs-target="#add_class">Create
         Class</button>
     </li>
     <li class="nav-item active mx-1 ">
@@ -30,9 +30,65 @@
       </div>
     </li>
   </ul>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    crossorigin="anonymous"></script>
 
 </nav>
+<div class="modal" tabindex="-1" id="add_class">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Class</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" class="cclass_form" id="create_class_form">
+          {% csrf_token %}
+          <div class="form-group">
+            <input type="text" class="form-control" id="class_name" placeholder="class_name">
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" id="section" placeholder="section"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
+
+<div class="modal" tabindex="-1" id="join_class">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Join Class</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" class="cclass_form" id="join_class_form">
+          {% csrf_token %}
+          <div class="form-group">
+            <input type="text" class="form-control" id="class_code" placeholder="class_code">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+  integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+  integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 <script>
   $('#create_class_form').on('submit', function (e) {
     e.preventDefault();
@@ -56,7 +112,7 @@
           '</div>' +
           '</div>'
         )
-        window.location.href = 'http://127.0.0.1:8000/home/';
+        window.location.href = 'http://127.0.0.1:8000/classroom/';
         window.location.reload();
       },
       error: function (xhr, errmsg, err) {
@@ -86,7 +142,7 @@
           '</div>' +
           '</div>'
         )
-        window.location.href = 'http://127.0.0.1:8000/home/';
+        window.location.href = 'http://127.0.0.1:8000/classroom/';
         window.location.reload();
       },
       error: function (xhr, errmsg, err) {
