@@ -17,7 +17,7 @@
                   <form method="post" action="{% url 'todos:add' %}">
                     {% csrf_token %}
                     <div class="form-row">
-                      <div class="col-md-8">
+                      <div class="col-md-6">
                         <input width="50vw;" type="text" class="form-control" name="title" placeholder="Do laundry" required>
                       </div>
                       <div class="col-md-2">
