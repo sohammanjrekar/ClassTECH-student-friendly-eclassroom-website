@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whiteboard</title>
+    <style>
+        #whiteboard {
+            border: 1px solid #000;
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="whiteboard"></canvas>
+    <script>
+        // WebSocket connection
+const socket = new WebSocket('ws://127.0.0.1:8000/whiteboard/ws/whiteboard/');
+
+socket.onopen = function(event) {
+    console.log('WebSocket connection established.');
+};
+
+socket.onmessage = function(event) {
+    console.log('Message received from server:', event.data);
+};
+
+socket.onerror = function(error) {
+    console.error('WebSocket error:', error);
+};
+
+        const canvas = document.getElementById('whiteboard');
+        const context = canvas.getContext('2d');
+        const socket = new WebSocket('ws://localhost:8000/ws/whiteboard/');
+
+        socket.onopen = function() {
+            console.log('WebSocket connected');
+        };
+
+        socket.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            if (data.action === 'draw') {
+                drawLine(data.data);
+            }
+        };
+
+        socket.onerror = function(error) {
+            console.error('WebSocket error:', error);
+        };
+
+        socket.onclose = function() {
+            console.log('WebSocket closed');
+        };
+
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+
+        function startDrawing(e) {
+            isDrawing = true;
+            [lastX, lastY] = [e.offsetX, e.offsetY];
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            context.beginPath();
+            context.moveTo(lastX, lastY);
+            context.lineTo(e.offsetX, e.offsetY);
+            context.stroke();
+            [lastX, lastY] = [e.offsetX, e.offsetY];
+
+            const data = {
+                action: 'draw',
+                data: { x1: lastX, y1: lastY, x2: e.offsetX, y2: e.offsetY }
+            };
+            socket.send(JSON.stringify(data));
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        function drawLine(data) {
+            context.beginPath();
+            context.moveTo(data.x1, data.y1);
+            context.lineTo(data.x2, data.y2);
+            context.stroke();
+        }
+    </script>
+</body>
+</html>
