@@ -26,20 +26,20 @@ INSTALLED_APPS = [
     'corsheaders', 
     'rest_framework',
 
-    # 2. YOUR MODULAR APPS (Updated to match your screenshot)
-    'users',
-    'student',
-    'teacher',
-    'classroom',
-    'attendance',
-    'grievance',   # Successfully renamed from complaint!
-    'interaction', # Your new Live Chat/Shy Mode app
-    'quiz',
-    'resources',
-    'analytics',
-    'gamification',
-    'sync',
-    'whiteboard',
+# ... django apps ...
+    'apps.users',
+    'apps.student',
+    'apps.teacher',
+    'apps.classroom',
+    'apps.attendance',
+    'apps.grievance',
+    'apps.interaction',
+    'apps.quiz',
+    'apps.resources',
+    'apps.analytics',
+    'apps.gamification',
+    'apps.sync',
+    'apps.whiteboard',
 ]
 
 MIDDLEWARE = [
